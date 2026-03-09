@@ -13,12 +13,12 @@ app.post (because we want to have a longer message)
 """
 from flask import Flask, request, jsonify
 from art import *
+import cowsay
 
 app = Flask(__name__)
 
 def sprite_msg(msg) -> str:
-    # To do: generate sprite and message
-    return "temporary"
+    return cowsay.get_output_string('cow', msg)
 
 def text2art_msg(msg) -> str: 
     return text2art(msg)
