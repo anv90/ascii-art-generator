@@ -12,16 +12,16 @@ app.post (because we want to have a longer message)
 
 """
 from flask import Flask, request, jsonify
+from art import *
 
 app = Flask(__name__)
 
 def sprite_msg(msg) -> str:
     # To do: generate sprite and message
-    return
+    return "temporary"
 
 def text2art_msg(msg) -> str: 
-    # To do: Generate ASCII text art
-    return 
+    return text2art(msg)
 
 @app.post('/ascii')
 def ascii_handler(): 
@@ -41,8 +41,11 @@ def ascii_handler():
     sprite = data["sprite"]
 
     if sprite: 
-        return jsonify({"message": sprite_msg(message)})
+        return jsonify({"message": sprite_msg(message)}), 200
     else: 
-        return jsonify({"message": text2art_msg(message)})
+        return jsonify({"message": text2art_msg(message)}), 200
 
 
+if (__name__ == '__main__'):
+    # Temporarily set to port 8000. Can be changed if needed
+    app.run(port = 8000)
